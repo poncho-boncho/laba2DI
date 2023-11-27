@@ -1,13 +1,11 @@
 package poncho_boncho.labs.laba2DI.repository;
 
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
-
 public class Employee {
     private Integer id;
 
-    private String fio;
+    private String lastName;
+    private String name;
+    private String middleName;
 
     private String address;
 
@@ -21,9 +19,11 @@ public class Employee {
         return id;
     }
 
-    public Employee(Integer id, String fio, String address, String department, String birthDay, String post) {
+    public Employee(Integer id, String lastName, String name, String middleName, String address, String department, String birthDay, String post) {
         this.id = id;
-        this.fio = fio;
+        this.lastName = lastName;
+        this.name=name;
+        this.middleName=middleName;
         this.address = address;
         this.department = department;
         this.birthDay = birthDay;
@@ -34,12 +34,12 @@ public class Employee {
         this.id = id;
     }
 
-    public String getFio() {
-        return fio;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setFio(String fio) {
-        this.fio = fio;
+    public void setFio(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getAddress() {
@@ -76,5 +76,22 @@ public class Employee {
 
     public void setPost(String post) {
         this.post = post;
-    }}
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
 
