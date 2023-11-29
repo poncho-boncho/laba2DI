@@ -1,7 +1,7 @@
 package poncho_boncho.labs.laba2DI.view;
 
 import org.springframework.stereotype.Component;
-import poncho_boncho.labs.laba2DI.services.AppService;
+import poncho_boncho.labs.laba2DI.services.DepartmentService;
 import poncho_boncho.labs.laba2DI.services.EmployeeService;
 
 import java.util.ArrayList;
@@ -12,14 +12,16 @@ import java.util.Scanner;
 public class InterfaceApp {
 
     private final EmployeeService employeeService;
+    private final DepartmentService departmentService;
 
     private List<String> attributes;
 
     Scanner in = new Scanner(System.in);
     int num;
 
-    public InterfaceApp(EmployeeService employeeService) {
+    public InterfaceApp(EmployeeService employeeService, DepartmentService departmentService) {
         this.employeeService = employeeService;
+        this.departmentService = departmentService;
     }
     public List<String> initForCreation(){
         attributes = new ArrayList<>();
@@ -41,10 +43,14 @@ public class InterfaceApp {
     }
 
     public void inform(){
-        System.out.println("1 - Pokazat tablicu \n" +
+        System.out.println("1 - Pokazat tablicu Employee \n" +
                 "2 - Sozdat Employee\n" +
                 "3 - Udalit zapis o Employee\n"+
-                "4 - Nayti zapis po pervim bukvam LastName"+
+                "4 - Nayti zapis po pervim bukvam LastName \n"+
+                "5 - Pokazat tablicu Departament \n"+
+                "6 - Sozdat Deportment \n"+
+                "7 - Udalit zapis o Department \n"+
+                "8 - Nayti zapis po pervim bukvam name (Department) \n"+
                 "9 - zavershit programmu");
     }
 
@@ -57,7 +63,7 @@ public class InterfaceApp {
             }
             if(num == 2){
                 initForCreation();
-                employeeService.create(1,
+                employeeService.create(
                         attributes.get(0),
                         attributes.get(1),
                         attributes.get(2),
@@ -73,6 +79,9 @@ public class InterfaceApp {
             if (num == 4){
                 System.out.println("Vvedi na cho nachinaetsy lastName");
                 System.out.println(employeeService.getFindEmployee(in.next()));
+            }
+            if (num ==5){
+                System.out.println(departmentService.getDepormentAll());
             }
         }
     }
