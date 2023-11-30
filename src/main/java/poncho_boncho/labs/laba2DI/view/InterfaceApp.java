@@ -4,9 +4,7 @@ import org.springframework.stereotype.Component;
 import poncho_boncho.labs.laba2DI.services.DepartmentService;
 import poncho_boncho.labs.laba2DI.services.EmployeeService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 @Component
 public class InterfaceApp {
@@ -23,22 +21,39 @@ public class InterfaceApp {
         this.employeeService = employeeService;
         this.departmentService = departmentService;
     }
-    public List<String> initForCreation(){
-        attributes = new ArrayList<>();
-        System.out.println("input: Last name");
-        attributes.add(in.next());
-        System.out.println("input name");
-        attributes.add(in.next());
-        System.out.println("input midle name");
-        attributes.add(in.next());
-        System.out.println("input address");
-        attributes.add(in.next());
-        System.out.println("input department");
-        attributes.add(in.next());
-        System.out.println("input birthDay");
-        attributes.add(in.next());
-        System.out.println("input post");
-        attributes.add(in.next());
+    public List<String> initForCreation(String nameEntity){
+
+
+
+        if (nameEntity.equals("employee")) {
+            attributes = new ArrayList<>();
+            System.out.println("input: Last name");
+            attributes.add(in.next());
+            System.out.println("input name");
+            attributes.add(in.next());
+            System.out.println("input midle name");
+            attributes.add(in.next());
+            System.out.println("input address");
+            attributes.add(in.next());
+            System.out.println("input department");
+            attributes.add(in.next());
+            System.out.println("input birthDay");
+            attributes.add(in.next());
+            System.out.println("input post");
+            attributes.add(in.next());
+        }
+        else{
+            attributes = new ArrayList<>();
+            System.out.println("input: name");
+            attributes.add(in.next());
+            System.out.println("input: employeNumbers");
+            attributes.add(in.next());
+            System.out.println("input: listRomms");
+            in.nextLine();
+            String str = in.nextLine();
+            attributes.add(str);
+        }
+
         return attributes;
     }
 
@@ -62,7 +77,7 @@ public class InterfaceApp {
                 System.out.println(employeeService.getEmployeeAll());
             }
             if(num == 2){
-                initForCreation();
+                initForCreation("employee");
                 employeeService.create(
                         attributes.get(0),
                         attributes.get(1),
@@ -80,8 +95,24 @@ public class InterfaceApp {
                 System.out.println("Vvedi na cho nachinaetsy lastName");
                 System.out.println(employeeService.getFindEmployee(in.next()));
             }
-            if (num ==5){
+            if (num == 5){
                 System.out.println(departmentService.getDepormentAll());
+            }
+            if(num == 6){
+                initForCreation("deportment");
+                departmentService.create(
+                        attributes.get(0),
+                        Integer.parseInt(attributes.get(1)),
+                        Arrays.asList(attributes.get(2).split(" "))
+                );
+            }
+            if (num == 7){
+                System.out.println("Vvedi index atributa na udalenie");
+                departmentService.deleteByIndex(Integer.parseInt(in.next())-1);
+            }
+            if (num == 8){
+                System.out.println("Vvedi na chto nachinaetsy name department");
+                System.out.println(departmentService.getFindDepartment(in.next()));
             }
         }
     }

@@ -26,11 +26,5 @@ public class Laba2DiApplication {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
 				JavaConfig.class
 		);
-		//AppService appService = context.getBean("appService",AppService.class);
-
-		//EmployeeService employeeService = context.getBean("employeeService", EmployeeService.class);
-		//System.out.println(employeeService.getEmployeeAll());
 	}
-
-
 }
